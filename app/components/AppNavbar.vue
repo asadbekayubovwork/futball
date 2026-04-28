@@ -133,31 +133,37 @@ const userInitials = computed(() => {
         </NButton>
       </NDropdown>
 
-      <NDropdown
-        v-if="user"
-        :options="userMenuOptions"
-        trigger="click"
-        @select="handleUserMenu"
-      >
-        <NAvatar
-          round
-          :src="profile?.photo_url || undefined"
-          :style="{ background: '#16a34a', color: 'white', cursor: 'pointer' }"
+      <ClientOnly>
+        <NDropdown
+          v-if="user"
+          :options="userMenuOptions"
+          trigger="click"
+          @select="handleUserMenu"
         >
-          {{ userInitials }}
-        </NAvatar>
-      </NDropdown>
+          <NAvatar
+            round
+            :src="profile?.photo_url || undefined"
+            :style="{ background: '#16a34a', color: 'white', cursor: 'pointer' }"
+          >
+            {{ userInitials }}
+          </NAvatar>
+        </NDropdown>
 
-      <NButton
-        v-else
-        type="primary"
-        @click="navigateTo(localePath('/login'))"
-      >
-        <template #icon>
-          <NIcon><LogIn /></NIcon>
+        <NButton
+          v-else
+          type="primary"
+          @click="navigateTo(localePath('/login'))"
+        >
+          <template #icon>
+            <NIcon><LogIn /></NIcon>
+          </template>
+          {{ t('nav.login') }}
+        </NButton>
+
+        <template #fallback>
+          <div class="auth-placeholder" />
         </template>
-        {{ t('nav.login') }}
-      </NButton>
+      </ClientOnly>
     </NSpace>
   </div>
 </template>
@@ -198,5 +204,9 @@ const userInitials = computed(() => {
   .links {
     display: none;
   }
+}
+.auth-placeholder {
+  width: 96px;
+  height: 34px;
 }
 </style>

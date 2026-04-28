@@ -159,22 +159,31 @@ function formatTime(iso: string) {
         class="join-card"
       >
         <template #header-extra>
-          <NTag :type="myRegistered ? 'success' : 'default'" round>
-            {{ myRegistered ? t('games.you_going') : t(`games.status.${nextGame.status}`) }}
-          </NTag>
+          <ClientOnly>
+            <NTag :type="myRegistered ? 'success' : 'default'" round>
+              {{ myRegistered ? t('games.you_going') : t(`games.status.${nextGame.status}`) }}
+            </NTag>
+          </ClientOnly>
         </template>
         <p class="muted">
           {{ formatDate(nextGame.played_at) }} · {{ formatTime(nextGame.played_at) }}
         </p>
         <NSpace>
-          <NButton
-            :type="myRegistered ? 'default' : 'primary'"
-            size="large"
-            :loading="updating"
-            @click="toggleRegistration"
-          >
-            {{ myRegistered ? t('games.not_going') : t('games.going') }}
-          </NButton>
+          <ClientOnly>
+            <NButton
+              :type="myRegistered ? 'default' : 'primary'"
+              size="large"
+              :loading="updating"
+              @click="toggleRegistration"
+            >
+              {{ myRegistered ? t('games.not_going') : t('games.going') }}
+            </NButton>
+            <template #fallback>
+              <NButton type="primary" size="large" disabled>
+                {{ t('games.going') }}
+              </NButton>
+            </template>
+          </ClientOnly>
           <NButton
             size="large"
             quaternary
