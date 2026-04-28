@@ -10,7 +10,8 @@ export function useProfile() {
   const loading = ref(false)
 
   async function load() {
-    if (!user.value) {
+    const userId = user.value?.id
+    if (!userId) {
       profile.value = null
       return
     }
@@ -18,16 +19,16 @@ export function useProfile() {
     const { data } = await supabase
       .from('profiles')
       .select('*')
-      .eq('id', user.value.id)
+      .eq('id', userId)
       .maybeSingle()
     profile.value = data ?? null
     loading.value = false
   }
 
   watch(
-    user,
-    (u) => {
-      if (u) load()
+    () => user.value?.id,
+    (id) => {
+      if (id) load()
       else profile.value = null
     },
     { immediate: true }

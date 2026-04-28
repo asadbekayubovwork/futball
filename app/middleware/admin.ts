@@ -3,15 +3,16 @@ export default defineNuxtRouteMiddleware(async () => {
   const supabase = useSupabaseClient()
   const localePath = useLocalePath()
 
-  if (!user.value) {
+  const userId = user.value?.id
+  if (!userId) {
     return navigateTo(localePath('/login'))
   }
 
   const { data } = await supabase
     .from('profiles')
     .select('role')
-    .eq('id', user.value.id)
-    .single()
+    .eq('id', userId)
+    .maybeSingle()
 
   if (data?.role !== 'admin') {
     return navigateTo(localePath('/'))
