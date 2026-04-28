@@ -1,0 +1,155 @@
+{
+  "brand": {
+    "name": "Webase FC",
+    "tagline": "Kompaniya futbol jamoasi"
+  },
+  "nav": {
+    "home": "Bosh sahifa",
+    "players": "O'yinchilar",
+    "games": "O'yinlar",
+    "stats": "Statistika",
+    "profile": "Profil",
+    "admin": "Admin",
+    "login": "Kirish",
+    "logout": "Chiqish"
+  },
+  "home": {
+    "next_game": "Keyingi o'yin",
+    "registered_players": "Yozilgan o'yinchilar",
+    "join": "Boraman",
+    "leave": "Bormayman",
+    "recent_results": "So'nggi natijalar",
+    "top_scorers": "Top scorer'lar"
+  },
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "delete": "O'chirish",
+    "edit": "Tahrirlash",
+    "language": "Til",
+    "theme": "Mavzu",
+    "theme_light": "Yorug'",
+    "theme_dark": "Qorong'i",
+    "theme_system": "Tizim"
+  },
+  "auth": {
+    "login_title": "Hisobga kirish",
+    "register_title": "Ro'yxatdan o'tish",
+    "login_with_google": "Google orqali kirish",
+    "login_with_email": "Email orqali",
+    "login_with_phone": "Telefon orqali",
+    "email": "Email",
+    "phone": "Telefon raqami",
+    "phone_placeholder": "+998 90 123 45 67",
+    "password": "Parol",
+    "full_name": "To'liq ism",
+    "submit_login": "Kirish",
+    "submit_register": "Ro'yxatdan o'tish",
+    "no_account": "Hisobingiz yo'qmi?",
+    "have_account": "Hisobingiz bormi?",
+    "or": "yoki",
+    "logout": "Chiqish",
+    "errors": {
+      "invalid_credentials": "Email yoki parol noto'g'ri",
+      "user_exists": "Bu email allaqachon ro'yxatdan o'tgan",
+      "weak_password": "Parol kamida 8 belgidan iborat bo'lishi kerak",
+      "invalid_phone": "Telefon raqami noto'g'ri",
+      "generic": "Xatolik yuz berdi"
+    },
+    "success_register": "Ro'yxatdan muvaffaqiyatli o'tdingiz"
+  },
+  "profile": {
+    "title": "Mening profilim",
+    "full_name": "To'liq ism",
+    "phone": "Telefon",
+    "email": "Email",
+    "position": "Pozitsiya",
+    "skill_rating": "Mahorat reytingi",
+    "photo_url": "Rasm URL",
+    "role": "Rol",
+    "save": "Saqlash",
+    "saved": "Profil yangilandi",
+    "save_error": "Saqlashda xatolik",
+    "positions": {
+      "GK": "Darvozabon",
+      "DEF": "Himoyachi",
+      "MID": "Yarim himoyachi",
+      "FWD": "Hujumchi"
+    },
+    "roles": {
+      "admin": "Administrator",
+      "player": "O'yinchi"
+    },
+    "skill_locked": "Mahorat reytingini admin belgilaydi"
+  },
+  "players": {
+    "title": "O'yinchilar",
+    "search": "Ism bo'yicha qidirish...",
+    "filter_position": "Pozitsiya",
+    "all_positions": "Hammasi",
+    "skill": "Mahorat",
+    "no_results": "O'yinchi topilmadi",
+    "no_position": "Pozitsiya belgilanmagan",
+    "total": "Jami {count} o'yinchi"
+  },
+  "games": {
+    "title": "O'yinlar",
+    "upcoming": "Kelayotgan",
+    "completed": "O'tkazilgan",
+    "no_upcoming": "Kelayotgan o'yin yo'q",
+    "no_completed": "Hali o'tkazilgan o'yin yo'q",
+    "registered_count": "{count} o'yinchi yozilgan",
+    "going": "Boraman",
+    "not_going": "Bormayman",
+    "you_going": "Siz yozilgansiz",
+    "team_count": "{count} ta jamoa",
+    "no_teams": "Jamoalar hali tuzilmagan",
+    "status": {
+      "upcoming": "Kelayotgan",
+      "team_formed": "Jamoalar tuzildi",
+      "in_progress": "Davom etmoqda",
+      "completed": "Yakunlangan",
+      "cancelled": "Bekor qilingan"
+    },
+    "create": {
+      "title": "Yangi o'yin",
+      "date": "Sana va vaqt",
+      "location": "Joylashuv",
+      "location_placeholder": "Yunusobod stadioni",
+      "notes": "Izohlar",
+      "submit": "Yaratish",
+      "created": "O'yin yaratildi",
+      "back": "Orqaga"
+    },
+    "manage": {
+      "registered": "Yozilgan o'yinchilar",
+      "form_teams": "Jamoa tuzish",
+      "team_count_label": "Jamoalar soni",
+      "regenerate": "Qayta tuzish",
+      "teams_formed": "Jamoalar tuzildi",
+      "no_registrations": "Hali hech kim yozilmagan",
+      "min_players": "Kamida {min} o'yinchi kerak",
+      "swap_player": "Almashtirish",
+      "select_player": "O'yinchini tanlang",
+      "delete_game": "O'yinni o'chirish",
+      "delete_confirm": "Haqiqatan ham bu o'yinni o'chirasizmi?"
+    }
+  },
+  "admin": {
+    "title": "Admin paneli",
+    "subtitle": "Boshqaruv vositalari",
+    "manage_players": "O'yinchilar boshqaruvi",
+    "manage_players_desc": "Mahorat reytingi va admin huquqlari",
+    "manage_games": "O'yinlar boshqaruvi",
+    "manage_games_desc": "O'yin yaratish, jamoa tuzish, natija kiritish",
+    "players": {
+      "title": "O'yinchilarni boshqarish",
+      "skill_updated": "Mahorat reytingi yangilandi",
+      "role_updated": "Rol o'zgartirildi",
+      "make_admin": "Admin qilish",
+      "remove_admin": "Adminlikdan chiqarish",
+      "confirm_role": "Haqiqatan ham {action}?"
+    }
+  }
+}

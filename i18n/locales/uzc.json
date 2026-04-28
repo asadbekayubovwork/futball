@@ -1,0 +1,155 @@
+{
+  "brand": {
+    "name": "Webase FC",
+    "tagline": "Компания футбол жамоаси"
+  },
+  "nav": {
+    "home": "Бош саҳифа",
+    "players": "Ўйинчилар",
+    "games": "Ўйинлар",
+    "stats": "Статистика",
+    "profile": "Профил",
+    "admin": "Админ",
+    "login": "Кириш",
+    "logout": "Чиқиш"
+  },
+  "home": {
+    "next_game": "Кейинги ўйин",
+    "registered_players": "Ёзилган ўйинчилар",
+    "join": "Бораман",
+    "leave": "Бормайман",
+    "recent_results": "Сўнгги натижалар",
+    "top_scorers": "Топ скорерлар"
+  },
+  "common": {
+    "loading": "Юкланмоқда...",
+    "save": "Сақлаш",
+    "cancel": "Бекор қилиш",
+    "delete": "Ўчириш",
+    "edit": "Таҳрирлаш",
+    "language": "Тил",
+    "theme": "Мавзу",
+    "theme_light": "Ёруғ",
+    "theme_dark": "Қоронғи",
+    "theme_system": "Тизим"
+  },
+  "auth": {
+    "login_title": "Ҳисобга кириш",
+    "register_title": "Рўйхатдан ўтиш",
+    "login_with_google": "Google орқали кириш",
+    "login_with_email": "Email орқали",
+    "login_with_phone": "Телефон орқали",
+    "email": "Email",
+    "phone": "Телефон рақами",
+    "phone_placeholder": "+998 90 123 45 67",
+    "password": "Парол",
+    "full_name": "Тўлиқ исм",
+    "submit_login": "Кириш",
+    "submit_register": "Рўйхатдан ўтиш",
+    "no_account": "Ҳисобингиз йўқми?",
+    "have_account": "Ҳисобингиз борми?",
+    "or": "ёки",
+    "logout": "Чиқиш",
+    "errors": {
+      "invalid_credentials": "Email ёки парол нотўғри",
+      "user_exists": "Бу email аллақачон рўйхатдан ўтган",
+      "weak_password": "Парол камида 8 белгидан иборат бўлиши керак",
+      "invalid_phone": "Телефон рақами нотўғри",
+      "generic": "Хатолик юз берди"
+    },
+    "success_register": "Рўйхатдан муваффақиятли ўтдингиз"
+  },
+  "profile": {
+    "title": "Менинг профилим",
+    "full_name": "Тўлиқ исм",
+    "phone": "Телефон",
+    "email": "Email",
+    "position": "Позиция",
+    "skill_rating": "Маҳорат рейтинги",
+    "photo_url": "Расм URL",
+    "role": "Рол",
+    "save": "Сақлаш",
+    "saved": "Профил янгиланди",
+    "save_error": "Сақлашда хатолик",
+    "positions": {
+      "GK": "Дарвозабон",
+      "DEF": "Ҳимоячи",
+      "MID": "Ярим ҳимоячи",
+      "FWD": "Ҳужумчи"
+    },
+    "roles": {
+      "admin": "Администратор",
+      "player": "Ўйинчи"
+    },
+    "skill_locked": "Маҳорат рейтингини админ белгилайди"
+  },
+  "players": {
+    "title": "Ўйинчилар",
+    "search": "Исм бўйича қидириш...",
+    "filter_position": "Позиция",
+    "all_positions": "Ҳаммаси",
+    "skill": "Маҳорат",
+    "no_results": "Ўйинчи топилмади",
+    "no_position": "Позиция белгиланмаган",
+    "total": "Жами {count} ўйинчи"
+  },
+  "games": {
+    "title": "Ўйинлар",
+    "upcoming": "Келаётган",
+    "completed": "Ўтказилган",
+    "no_upcoming": "Келаётган ўйин йўқ",
+    "no_completed": "Ҳали ўтказилган ўйин йўқ",
+    "registered_count": "{count} ўйинчи ёзилган",
+    "going": "Бораман",
+    "not_going": "Бормайман",
+    "you_going": "Сиз ёзилгансиз",
+    "team_count": "{count} та жамоа",
+    "no_teams": "Жамоалар ҳали тузилмаган",
+    "status": {
+      "upcoming": "Келаётган",
+      "team_formed": "Жамоалар тузилди",
+      "in_progress": "Давом этмоқда",
+      "completed": "Якунланган",
+      "cancelled": "Бекор қилинган"
+    },
+    "create": {
+      "title": "Янги ўйин",
+      "date": "Сана ва вақт",
+      "location": "Жойлашув",
+      "location_placeholder": "Юнусобод стадиони",
+      "notes": "Изоҳлар",
+      "submit": "Яратиш",
+      "created": "Ўйин яратилди",
+      "back": "Орқага"
+    },
+    "manage": {
+      "registered": "Ёзилган ўйинчилар",
+      "form_teams": "Жамоа тузиш",
+      "team_count_label": "Жамоалар сони",
+      "regenerate": "Қайта тузиш",
+      "teams_formed": "Жамоалар тузилди",
+      "no_registrations": "Ҳали ҳеч ким ёзилмаган",
+      "min_players": "Камида {min} ўйинчи керак",
+      "swap_player": "Алмаштириш",
+      "select_player": "Ўйинчини танланг",
+      "delete_game": "Ўйинни ўчириш",
+      "delete_confirm": "Ҳақиқатан ҳам бу ўйинни ўчирасизми?"
+    }
+  },
+  "admin": {
+    "title": "Админ панели",
+    "subtitle": "Бошқарув воситалари",
+    "manage_players": "Ўйинчилар бошқаруви",
+    "manage_players_desc": "Маҳорат рейтинги ва админ ҳуқуқлари",
+    "manage_games": "Ўйинлар бошқаруви",
+    "manage_games_desc": "Ўйин яратиш, жамоа тузиш, натижа киритиш",
+    "players": {
+      "title": "Ўйинчиларни бошқариш",
+      "skill_updated": "Маҳорат рейтинги янгиланди",
+      "role_updated": "Рол ўзгартирилди",
+      "make_admin": "Админ қилиш",
+      "remove_admin": "Админликдан чиқариш",
+      "confirm_role": "Ҳақиқатан ҳам {action}?"
+    }
+  }
+}
