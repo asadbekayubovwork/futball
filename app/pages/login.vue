@@ -24,7 +24,8 @@ const route = useRoute()
 
 watchEffect(() => {
   if (user.value) {
-    navigateTo(localePath('/'))
+    const redirect = (route.query.redirect as string) || '/'
+    navigateTo(redirect.startsWith('/') ? redirect : localePath('/'))
   }
 })
 
@@ -47,6 +48,11 @@ async function loginWithGoogle() {
   }
 }
 
+function postLoginRedirect() {
+  const redirect = (route.query.redirect as string) || '/'
+  return redirect.startsWith('/') ? redirect : localePath('/')
+}
+
 async function loginWithEmail() {
   loading.value = true
   const { error } = await supabase.auth.signInWithPassword({
@@ -58,7 +64,7 @@ async function loginWithEmail() {
     message.error(t('auth.errors.invalid_credentials'))
     return
   }
-  navigateTo(localePath((route.query.redirect as string) || '/'))
+  navigateTo(postLoginRedirect())
 }
 
 async function loginWithPhone() {
@@ -72,7 +78,7 @@ async function loginWithPhone() {
     message.error(t('auth.errors.invalid_credentials'))
     return
   }
-  navigateTo(localePath((route.query.redirect as string) || '/'))
+  navigateTo(postLoginRedirect())
 }
 </script>
 

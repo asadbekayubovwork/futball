@@ -1,8 +1,10 @@
-export default defineNuxtRouteMiddleware((to) => {
-  const user = useSupabaseUser()
+export default defineNuxtRouteMiddleware(async (to) => {
+  const supabase = useSupabaseClient()
   const localePath = useLocalePath()
 
-  if (!user.value?.id) {
+  const { data } = await supabase.auth.getSession()
+
+  if (!data.session?.user?.id) {
     return navigateTo({
       path: localePath('/login'),
       query: { redirect: to.fullPath },

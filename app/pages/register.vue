@@ -20,10 +20,12 @@ const localePath = useLocalePath()
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const message = useMessage()
+const route = useRoute()
 
 watchEffect(() => {
   if (user.value) {
-    navigateTo(localePath('/'))
+    const redirect = (route.query.redirect as string) || '/'
+    navigateTo(redirect.startsWith('/') ? redirect : localePath('/'))
   }
 })
 
