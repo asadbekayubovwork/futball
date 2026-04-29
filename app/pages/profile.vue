@@ -10,6 +10,7 @@ import {
   NSpace,
   NSpin,
   NRate,
+  NEmpty,
   useMessage,
 } from 'naive-ui'
 import type { Database } from '~/types/database.types'
@@ -23,7 +24,11 @@ const { t } = useI18n()
 const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const message = useMessage()
-const { profile, loading, load, isAdmin } = useProfile()
+const { profile, loading, loaded, load, isAdmin } = useProfile()
+
+onMounted(() => {
+  load(true)
+})
 
 const form = reactive({
   full_name: '',
@@ -72,11 +77,13 @@ async function save() {
 <template>
   <div class="profile-page">
     <NCard :title="t('profile.title')">
-      <div v-if="loading && !profile" class="center">
+      <div v-if="loading || !loaded" class="center">
         <NSpin />
       </div>
 
-      <NForm v-else-if="profile" @submit.prevent="save">
+      <NEmpty v-else-if="!profile" description="Profil topilmadi" />
+
+      <NForm v-else @submit.prevent="save">
         <NSpace vertical :size="4" class="header-info">
           <NSpace :size="8">
             <NTag :type="isAdmin ? 'warning' : 'default'" round>

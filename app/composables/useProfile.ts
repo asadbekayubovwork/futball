@@ -7,34 +7,48 @@ export function useProfile() {
   const user = useSupabaseUser()
 
   const profile = useState<Profile | null>('profile', () => null)
-  const loading = ref(false)
+  const loading = useState<boolean>('profile-loading', () => false)
+  const loaded = useState<boolean>('profile-loaded', () => false)
 
-  async function load() {
-    const userId = user.value?.id
-    if (!userId) {
-      profile.value = null
-      return
-    }
+  async function load(force = false) {
+    if (loading.value) return
+    if (loaded.value && !force && profile.value) return
+
     loading.value = true
-    const { data } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', userId)
-      .maybeSingle()
-    profile.value = data ?? null
-    loading.value = false
+    try {
+      const { data: sessionData } = await supabase.auth.getSession()
+      const userId = sessionData.session?.user?.id
+      if (!userId) {
+        profile.value = null
+        return
+      }
+      const { data } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .maybeSingle()
+      profile.value = data ?? null
+    } finally {
+      loading.value = false
+      loaded.value = true
+    }
   }
 
-  watch(
-    () => user.value?.id,
-    (id) => {
-      if (id) load()
-      else profile.value = null
-    },
-    { immediate: true }
-  )
+  if (import.meta.client) {
+    onMounted(() => {
+      load()
+    })
+
+    watch(
+      () => user.value?.id,
+      (id, prevId) => {
+        if (id !== prevId) load(true)
+        if (!id) profile.value = null
+      }
+    )
+  }
 
   const isAdmin = computed(() => profile.value?.role === 'admin')
 
-  return { profile, loading, load, isAdmin }
+  return { profile, loading, loaded, load, isAdmin }
 }
