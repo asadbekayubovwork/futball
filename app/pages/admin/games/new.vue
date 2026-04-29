@@ -19,8 +19,8 @@ definePageMeta({
 const { t } = useI18n()
 const localePath = useLocalePath()
 const supabase = useSupabaseClient<Database>()
-const user = useSupabaseUser()
 const message = useMessage()
+const { getId } = useAuthUser()
 
 const form = reactive({
   played_at: nextFridayAt19().getTime(),
@@ -39,7 +39,8 @@ function nextFridayAt19() {
 const submitting = ref(false)
 
 async function submit() {
-  if (!user.value) return
+  const userId = await getId()
+  if (!userId) return
   if (!form.played_at) {
     message.error(t('auth.errors.generic'))
     return
@@ -52,7 +53,7 @@ async function submit() {
       location: form.location.trim() || null,
       notes: form.notes.trim() || null,
       status: 'upcoming',
-      created_by: user.value.id,
+      created_by: userId,
     })
     .select()
     .single()

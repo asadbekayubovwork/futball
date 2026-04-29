@@ -23,6 +23,7 @@ const route = useRoute()
 const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const message = useMessage()
+const { getId } = useAuthUser()
 
 const gameId = computed(() => route.params.id as string)
 
@@ -52,7 +53,8 @@ async function loadAll() {
 
   const regs = (regRes.data ?? []) as any[]
   registrations.value = regs.map((r) => r.profile).filter(Boolean) as Profile[]
-  myRegistered.value = !!user.value && regs.some((r) => r.player_id === user.value?.id)
+  const myId = await getId()
+  myRegistered.value = !!myId && regs.some((r) => r.player_id === myId)
 
   teams.value = ((teamsRes.data as any[]) ?? []).map((t) => ({
     ...t,
@@ -65,20 +67,21 @@ async function loadAll() {
 await loadAll()
 
 async function toggleRegistration() {
-  if (!user.value || !game.value) return
+  const userId = await getId()
+  if (!userId || !game.value) return
   updating.value = true
   if (myRegistered.value) {
     const { error } = await supabase
       .from('registrations')
       .delete()
       .eq('game_id', gameId.value)
-      .eq('player_id', user.value.id)
+      .eq('player_id', userId)
     if (error) message.error(error.message)
   } else {
     const { error } = await supabase.from('registrations').upsert(
       {
         game_id: gameId.value,
-        player_id: user.value.id,
+        player_id: userId,
         status: 'going',
       },
       { onConflict: 'game_id,player_id' }

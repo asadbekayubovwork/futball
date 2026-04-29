@@ -22,6 +22,7 @@ const localePath = useLocalePath()
 const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const message = useMessage()
+const { getId } = useAuthUser()
 
 const loading = ref(true)
 const updating = ref(false)
@@ -48,7 +49,8 @@ async function loadHome() {
       .eq('game_id', gameData.id)
       .eq('status', 'going')
     registeredCount.value = regs?.length ?? 0
-    myRegistered.value = !!user.value && !!regs?.some((r) => r.player_id === user.value?.id)
+    const myId = await getId()
+    myRegistered.value = !!myId && !!regs?.some((r) => r.player_id === myId)
   } else {
     registeredCount.value = 0
     myRegistered.value = false
@@ -60,7 +62,8 @@ await loadHome()
 watch(user, loadHome)
 
 async function toggleRegistration() {
-  if (!user.value) {
+  const userId = await getId()
+  if (!userId) {
     navigateTo(localePath('/login'))
     return
   }
@@ -71,13 +74,13 @@ async function toggleRegistration() {
       .from('registrations')
       .delete()
       .eq('game_id', nextGame.value.id)
-      .eq('player_id', user.value.id)
+      .eq('player_id', userId)
     if (error) message.error(error.message)
   } else {
     const { error } = await supabase.from('registrations').upsert(
       {
         game_id: nextGame.value.id,
-        player_id: user.value.id,
+        player_id: userId,
         status: 'going',
       },
       { onConflict: 'game_id,player_id' }

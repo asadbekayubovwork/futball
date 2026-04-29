@@ -25,6 +25,7 @@ const supabase = useSupabaseClient<Database>()
 const user = useSupabaseUser()
 const message = useMessage()
 const { profile, loading, loaded, load, isAdmin } = useProfile()
+const { getId } = useAuthUser()
 
 onMounted(() => {
   load(true)
@@ -54,7 +55,11 @@ const positionOptions = computed(() => [
 const saving = ref(false)
 
 async function save() {
-  if (!user.value) return
+  const userId = await getId()
+  if (!userId) {
+    message.error(t('auth.errors.generic'))
+    return
+  }
   saving.value = true
   const { error } = await supabase
     .from('profiles')
@@ -63,14 +68,14 @@ async function save() {
       position: form.position as Database['public']['Tables']['profiles']['Row']['position'],
       photo_url: form.photo_url.trim() || null,
     })
-    .eq('id', user.value.id)
+    .eq('id', userId)
   saving.value = false
   if (error) {
     message.error(t('profile.save_error'))
     return
   }
   message.success(t('profile.saved'))
-  await load()
+  await load(true)
 }
 </script>
 
